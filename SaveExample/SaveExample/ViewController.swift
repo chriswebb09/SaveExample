@@ -9,23 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            setup()
+        }
+    }
     
     var dataSource: TableViewDataSource!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-    }
-    
     func setup() {
-        let store = ItemStore()
+        let store = ItemStore(database: Database<Data>(key: UUID().uuidString, encoder: JSONEncoder.init(), decoder: JSONDecoder.init()))
         store.add(listener: self)
         self.dataSource = TableViewDataSource(store: store)
         tableView.dataSource = dataSource
     }
-
+    
     @IBAction func saveItem(_ sender: Any) {
         dataSource.updateItem()
     }
@@ -42,6 +41,5 @@ extension ViewController: Synchronizer {
     func willUpdate() {
         print("about to reload tableView")
     }
-    
 }
 

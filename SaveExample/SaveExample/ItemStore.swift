@@ -16,6 +16,10 @@ class ItemStore: Store {
     
     var values: [Item] = []
     
-    var database: Database<Data> = Database<Data>(key: UUID().uuidString, encoder: JSONEncoder.init(), decoder: JSONDecoder.init())
+    var database: Database<Data>
+    
+    init(database: Database<Data>) {
+        self.database = database
+    }
     
 }
