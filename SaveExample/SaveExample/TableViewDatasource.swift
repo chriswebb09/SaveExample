@@ -15,18 +15,45 @@ class TableViewDataSource: NSObject {
     var cellModels: [CellModel] {
         return self.store.values.map { CellModel(title: $0.name) }
     }
-
+    
     init(store: ItemStore) {
         self.store = store
     }
-
+    
     var itemCount: Int {
         return cellModels.count
     }
- 
+    
     func updateItem() {
-        store.values.append(Item(name: "Item \(itemCount + 1)", uuid: UUID.init()))
-        store.save()
+        store.add(Item(name: "Item \(itemCount + 1)", uuid: UUID.init()))
+    }
+    
+    func clearAll() {
+        store.clear()
+    }
+    
+    func cellModel(for indexPath: IndexPath) -> CellModel {
+        return cellModels[indexPath.row]
+    }
+    
+    func getItem(from model: CellModel) -> Item? {
+        guard let text = model.titleText else { return nil }
+        if let value = store.value(for: text) {
+            return value
+        }
+        return nil
+    }
+    
+    func remove(value: Item?) {
+        if let item = value {
+            store.remove(item)
+        }
+    }
+    
+    func removeValue(for indexPath: IndexPath) {
+        let model = cellModel(for: indexPath)
+        let item = getItem(from: model)
+        remove(value: item)
     }
 }
 
@@ -40,6 +67,4 @@ extension TableViewDataSource: UITableViewDataSource {
         cell.textLabel?.text = cellModels[indexPath.row].titleText
         return cell
     }
-    
-    
 }

@@ -20,6 +20,28 @@ protocol Store: class {
 }
 
 extension Store {
+    
+    func add(_ value: Model) {
+        guard !values.contains(value) else { return }
+        values.insert(value, at: 0)
+        save()
+    }
+    
+    func remove(_ value: Model) {
+        guard let offset = values.index(of: value) else { return }
+        let index = values.startIndex.distance(to: offset)
+        values.remove(at: index)
+        save()
+    }
+    
+    func clear() {
+        values.removeAll()
+        save()
+    }
+    
+    func contains(_ value: Model) -> Bool {
+        return values.contains(value)
+    }
 
     func add(listener: Synchronizer) {
         let wrapper = Sync(notify: listener)

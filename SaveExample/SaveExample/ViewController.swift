@@ -17,16 +17,23 @@ class ViewController: UIViewController {
             setup()
         }
     }
-
+    
     @IBAction func saveItem(_ sender: Any) {
         dataSource.updateItem()
     }
     
+    @IBAction func clearItems(_ sender: Any) {
+        dataSource.clearAll()
+    }
+    
+    
     func setup() {
-        let store = ItemStore(database: Database<Data>(key: UUID().uuidString, encoder: JSONEncoder.init(), decoder: JSONDecoder.init()))
+        let database = Database<Data>()
+        let store = ItemStore(database: database)
         store.add(listener: self)
         self.dataSource = TableViewDataSource(store: store)
         tableView.dataSource = dataSource
+        tableView.delegate = self
     }
     
 }
@@ -41,6 +48,12 @@ extension ViewController: Synchronizer {
     
     func willUpdate() {
         print("about to reload tableView")
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.dataSource.removeValue(for: indexPath)
     }
 }
 

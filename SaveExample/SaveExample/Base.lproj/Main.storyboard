@@ -38,6 +38,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="bHz-Ys-nfV">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9eV-Ub-4Ac">
+                            <connections>
+                                <action selector="clearItems:" destination="BYZ-38-t0r" id="o5A-aF-YpU"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="uSP-GA-aP5">
                             <connections>
                                 <action selector="saveItem:" destination="BYZ-38-t0r" id="J92-n3-4JR"/>

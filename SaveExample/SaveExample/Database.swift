@@ -12,7 +12,6 @@ class Database<T: Codable>: DataWriter, DataReader {
     
     var decoder: JSONDecoder
     var encoder: JSONEncoder
-    
     var key: String
     
     var defaults: UserDefaults = .standard
@@ -21,6 +20,14 @@ class Database<T: Codable>: DataWriter, DataReader {
         self.key = key
         self.encoder = encoder
         self.decoder = decoder
+    }
+    
+    convenience init(key: String) {
+        self.init(key: key, encoder: JSONEncoder.init(), decoder: JSONDecoder.init())
+    }
+    
+    convenience init() {
+        self.init(key: UUID().uuidString, encoder: JSONEncoder.init(), decoder: JSONDecoder.init())
     }
     
     func write(value: T) {

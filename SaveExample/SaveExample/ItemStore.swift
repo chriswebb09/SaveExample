@@ -22,4 +22,7 @@ class ItemStore: Store {
         self.database = database
     }
     
+    func value(for key: String) -> Item? {
+        return values.filter { $0.name == key }.first
+    }
 }
