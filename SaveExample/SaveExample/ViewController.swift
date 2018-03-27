@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     var dataSource: TableViewDataSource!
     
-    @IBOutlet weak var tableView: UITableView! {
+    @IBOutlet private weak var tableView: UITableView! {
         didSet {
             setup()
         }
@@ -25,7 +25,6 @@ class ViewController: UIViewController {
     @IBAction func clearItems(_ sender: Any) {
         dataSource.clearAll()
     }
-    
     
     func setup() {
         let database = Database<Data>()

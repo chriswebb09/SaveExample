@@ -8,15 +8,7 @@
 
 import Foundation
 
-class Item: Hashable, Codable {
-    
-    var hashValue: Int {
-        return uuid.hashValue
-    }
-    
-    static func ==(lhs: Item, rhs: Item) -> Bool {
-        return lhs.uuid == rhs.uuid
-    }
+class Item: Codable {
     
     var identity: UUID {
         return uuid
@@ -37,7 +29,7 @@ class Item: Hashable, Codable {
         let container = try decoder.container(keyedBy: Keys.self)
         self.uuid = try container.decode(UUID.self, forKey: .uuid)
         self.name = try container.decode(String.self, forKey: .name)
- 
+        
     }
     
     func encode(to encoder: Encoder) throws {
@@ -48,6 +40,16 @@ class Item: Hashable, Codable {
     
     func set(_ newName: String) {
         name = newName
+    }
+}
+
+extension Item: Hashable {
+    var hashValue: Int {
+        return uuid.hashValue
+    }
+    
+    static func ==(lhs: Item, rhs: Item) -> Bool {
+        return lhs.uuid == rhs.uuid
     }
 }
 
