@@ -11,13 +11,17 @@ import UIKit
 class TableViewDataSource: NSObject {
     
     var store: ItemStore!
+    
+    var cellModels: [CellModel] {
+        return self.store.values.map { CellModel(title: $0.name) }
+    }
 
     init(store: ItemStore) {
         self.store = store
     }
 
     var itemCount: Int {
-        return store.values.count
+        return cellModels.count
     }
  
     func updateItem() {
@@ -32,8 +36,8 @@ extension TableViewDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "example", for: indexPath) as! UITableViewCell
-        cell.textLabel?.text = store.values[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "example", for: indexPath) as UITableViewCell
+        cell.textLabel?.text = cellModels[indexPath.row].titleText
         return cell
     }
     

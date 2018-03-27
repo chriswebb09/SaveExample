@@ -23,6 +23,7 @@
 		A72776C02069A5BB0037A380 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72776BF2069A5BB0037A380 /* Database.swift */; };
 		A72776C22069A5D10037A380 /* DataWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72776C12069A5D10037A380 /* DataWriter.swift */; };
 		A72776C42069ACB90037A380 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72776C32069ACB90037A380 /* ItemStore.swift */; };
+		A76D29FB2069CD940064FCB8 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76D29FA2069CD940064FCB8 /* CellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		A72776BF2069A5BB0037A380 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		A72776C12069A5D10037A380 /* DataWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataWriter.swift; sourceTree = "<group>"; };
 		A72776C32069ACB90037A380 /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		A76D29FA2069CD940064FCB8 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				A72776C12069A5D10037A380 /* DataWriter.swift */,
 				A72776BF2069A5BB0037A380 /* Database.swift */,
 				A72776BD2069A5A70037A380 /* DataReader.swift */,
+				A76D29FA2069CD940064FCB8 /* CellModel.swift */,
 				A72776BB2069A5920037A380 /* Synchronizer.swift */,
 				A72776B92069A57E0037A380 /* Sync.swift */,
 				A72776852069A2050037A380 /* AppDelegate.swift */,
@@ -297,6 +300,7 @@
 				A72776C02069A5BB0037A380 /* Database.swift in Sources */,
 				A72776BA2069A57E0037A380 /* Sync.swift in Sources */,
 				A72776862069A2050037A380 /* AppDelegate.swift in Sources */,
+				A76D29FB2069CD940064FCB8 /* CellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

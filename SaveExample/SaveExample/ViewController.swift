@@ -10,13 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var dataSource: TableViewDataSource!
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             setup()
         }
     }
-    
-    var dataSource: TableViewDataSource!
+
+    @IBAction func saveItem(_ sender: Any) {
+        dataSource.updateItem()
+    }
     
     func setup() {
         let store = ItemStore(database: Database<Data>(key: UUID().uuidString, encoder: JSONEncoder.init(), decoder: JSONDecoder.init()))
@@ -25,9 +29,6 @@ class ViewController: UIViewController {
         tableView.dataSource = dataSource
     }
     
-    @IBAction func saveItem(_ sender: Any) {
-        dataSource.updateItem()
-    }
 }
 
 extension ViewController: Synchronizer {
